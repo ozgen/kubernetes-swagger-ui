@@ -1,0 +1,41 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swagger-service
+  labels:
+    name: swagger-service
+spec:
+  selector:
+    matchLabels:
+      name: swagger-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: swagger-service
+    spec:
+      containers:
+        - name: swagger-service
+          image: swaggerapi/swagger-ui:v3.14.1
+          ports:
+          - containerPort: 8080
+          env:
+          - name: SWAGGER_JSON
+            value: /swagger/jaxrs-api.json
+          resources:
+            requests:
+              cpu: 500m
+              memory: 500M
+            limits:
+              cpu: 1
+              memory: 1Gi
+          volumeMounts:
+            - name: swagger-config-volume
+              mountPath: /swagger/jaxrs-api.json
+              subPath: jaxrs-api.json
+      volumes:
+        - name: swagger-config-volume
+          configMap:
+            name: swagger-config
+      

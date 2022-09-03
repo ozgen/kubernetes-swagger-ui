@@ -1,0 +1,9 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: swagger-config
+data:
+  # TODO: content of json file paste below
+  jaxrs-api.json: |-
+    {"json": "json"}

@@ -1,0 +1,10 @@
+namespace: ozgen
+resources:
+- service.yaml
+- configuration.yaml
+- swagger.yaml
+
+images:
+  - name: swaggerapi/swagger-ui
+    newTag: v3.14.1
+
